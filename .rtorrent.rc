@@ -1,0 +1,53 @@
+# rTorrent configuration file
+#
+# While editing: please remember there are other people on your server!
+
+scgi_port = 127.0.0.1:5050
+
+directory = /media/torrents/private/rtorrent/data
+session = ~/.rtorrent/session
+
+schedule = watch_directory_1, 10, 60, "load_start=/media/torrents/private/rtorrent/watch/btn/*.torrent,d.directory.set=/media/torrents/private/rtorrent/data/btn"
+
+schedule = watch_directory_2, 10, 60, "load_start=/media/torrents/private/rtorrent/watch/ptp/*.torrent,d.directory.set=/media/torrents/private/rtorrent/data/ptp"
+
+schedule = watch_directory_3, 10, 60, "load_start=/media/torrents/private/rtorrent/watch/what/*.torrent,d.directory.set=/media/torrents/private/rtorrent/data/what"
+
+schedule = watch_directory_4, 5, 60, "load_start=/media/torrents/private/rtorrent/watch/*.torrent"
+
+system.method.insert=checkdirs1,simple,"not=\"$equal={d.get_custom1=,d.get_base_path=}\""
+system.method.insert=movecheck1,simple,"and={checkdirs1=,d.get_complete=,d.get_custom1=}"
+system.method.insert=movedir1,simple,"d.set_directory=$d.get_custom1=;execute=mv,-u,$d.get_base_path=,$d.get_custom1=;d.set_custom1=;d.stop=;d.start="
+system.method.set_key=event.download.hash_done,move_hashed1,"branch={$movecheck1=,movedir1=}"
+
+#schedule = watch_directory, 5, 60, load_start=/media/torrents/private/rtorrent/watch/*.torrent
+#schedule = untied_directory, 5, 60, stop_untied=
+
+#schedule = low_diskspace, 5, 120, close_low_diskspace=100M
+
+# Private trackers only please
+peer_exchange = no
+tracker_numwant = -1
+use_udp_trackers = yes
+port_range = 50000-60000
+# Increasing these values does not normally increase speed but can negatively impact the server -- please be careful
+min_peers = 2
+max_peers = 100
+min_peers_seed = 2
+max_peers_seed = 60
+max_uploads = 5
+
+check_hash = yes
+
+# Start rutorrent plugins automatically
+execute = {sh,-c,/usr/bin/php /var/www/html/rutorrent/php/initplugins.php john &}
+
+# Do not change: must modify Apache to be effective
+
+encryption = allow_incoming,try_outgoing,enable_retry
+#scgi_local = /media/torrents/private/rtorrent/.socket
+
+# Add new method to get finished dir
+system.method.insert = d.get_finished_dir,simple,"cat=/media/torrents/private/rtorrent/data/,$d.get_custom1="
+
+system.method.set_key = event.download.finished,move_complete,"d.set_directory=$d.get_finished_dir=;execute=mkdir,-p,$d.get_finished_dir=;execute=mv,-u,$d.get_base_path=,$d.get_finished_dir="
