@@ -1,0 +1,144 @@
+# general
+alias clearcache='sudo sh -c "sync; echo 3 > /proc/sys/vm/drop_caches"'
+alias cls='clear'
+alias dirs='dirs -v'
+alias disks='echo "╓───── m o u n t . p o i n t s"; echo "╙────────────────────────────────────── ─ ─ "; lsblk -a; echo ""; echo "╓───── d i s k . u s a g e"; echo "╙────────────────────────────────────── ─ ─ "; df -h;'
+alias fehh='feh --scale-down'
+alias install='sudo apt-get install'
+alias pmixer='pulsemixer'
+#alias reconnect='nmcli nm enable false && nmcli nm enable true'
+alias reconnect='nmcli n off && nmcli n on'
+alias update='sudo apt-get update'
+alias vnstat='vnstat -i wlx00146c623329 -m'alias xclip='xclip -selection c'
+alias weechat='/usr/bin/weechat'
+alias weather='curl 'http://wttr.in/palm_bay''
+
+# file stuff
+#alias dolphin='dolphin . &'
+alias dfc='dfc -t ext4,fuseblk -w'
+alias imgur='bash ~/.scripts/imgurbash.sh'
+alias limf='limf -c 13'
+alias rsync='rsync --progress -h'
+alias tree='tree -CAhF --dirsfirst'
+
+# conversion
+alias downsample='bash ~/.scripts/downsample.sh'
+alias mp3opus='for f in *.mp3; do ffmpeg -i "$f" -acodec libopus -ab 192k "${f%.mp3}.opus"; done'
+#alias opus='mkdir converted && for f in *.flac; do opusenc --bitrate 192 --vbr "$f" "${f%.flac}.opus" && mv *.opus converted/; done'
+alias opus='for f in *.flac; do opusenc --bitrate 192 --vbr "$f" "${f%.flac}.opus"; done'
+alias opus2='for f in *.flac; do ffmpeg -i "$f" -acodec libopus -ab 192k "${f%.flac}.opus"; done'
+
+# rice
+alias 3spooky5me='bash .scripts/3spooky5me'
+alias colors='bash .scripts/colors'
+alias colors2='bash .scripts/colors2'
+alias invaders='bash .scripts/invaders'
+alias nsfwdoge='clear ; echo "cocks" "nigger" "faggot" "faggots" "cumdumpster" | doge -f'
+alias pacman='bash .scripts/pacman'
+alias pipes='bash .scripts/pipes'
+#alias cava='cava -i fifo -c green -b 200 -s 250% -S'
+
+# alias lotro='bash /media/john/OS/Program\ Files\ \(x86\)/Turbine/The\ Lord\ of\ the\ Rings\ Online/lotrolauncher.script'
+alias lotro='bash Downloads/The\ Lord\ of\ the\ Rings\ Online/lotrolauncher.script'
+
+# mounting stuff
+alias tvmnt='sudo mount /dev/sdb1 /media/john/Storage'
+alias luksopen='sudo cryptsetup luksOpen'
+alias luksclose='sudo cryptsetup luksClose'
+
+# piracy stuff
+alias sonarr='mono --debug /opt/NzbDrone/NzbDrone.exe'
+alias mega='megacmd'
+alias transfer=transfer 
+transfer() {
+# write to output to tmpfile because of progress bar
+tmpfile=$( mktemp -t transferXXX ); curl --progress-bar --upload-file $1 https://transfer.sh/$(basename $1) >> $tmpfile; cat $tmpfile; rm -f $tmpfile; }
+
+# Calculator
+calc(){ awk "BEGIN{ print $* }" ;}
+
+#Weather
+wz(){ curl -s "http://api.wunderground.com/auto/wui/geo/ForecastXML/index.xml?query=${@:-<32907>}"|perl -ne '/<title>([^<]+)/&&printf "%s: ",$1;/<fcttext>([^<]+)/&&print $1,"\n"';}
+export PUUSH_API_KEY="8F1DA407DACDCA32BB075457B5436BA5"
+
+# Show the current version of the operating system
+ver ()
+{
+	local dtype
+	dtype=$(distribution)
+
+	if [ $dtype == "redhat" ]; then
+		if [ -s /etc/redhat-release ]; then
+			cat /etc/redhat-release && uname -a
+		else
+			cat /etc/issue && uname -a
+		fi
+	elif [ $dtype == "suse" ]; then
+		cat /etc/SuSE-release
+	elif [ $dtype == "debian" ]; then
+		lsb_release -a
+		# sudo cat /etc/issue && sudo cat /etc/issue.net && sudo cat /etc/lsb_release && sudo cat /etc/os-release # Linux Mint option 2
+	elif [ $dtype == "gentoo" ]; then
+		cat /etc/gentoo-release
+	elif [ $dtype == "mandriva" ]; then
+		cat /etc/mandriva-release
+	elif [ $dtype == "slackware" ]; then
+		cat /etc/slackware-version
+	else
+		if [ -s /etc/issue ]; then
+			cat /etc/issue
+		else
+			echo "Error: Unknown distribution"
+			exit 1
+		fi
+	fi
+}
+
+# Show current network information
+netinfo ()
+{
+	echo "--------------- Network Information ---------------"
+	/sbin/ifconfig | awk /'inet addr/ {print $2}'
+	echo ""
+	/sbin/ifconfig | awk /'Bcast/ {print $3}'
+	echo ""
+	/sbin/ifconfig | awk /'inet addr/ {print $4}'
+
+	/sbin/ifconfig | awk /'HWaddr/ {print $4,$5}'
+	echo "---------------------------------------------------"
+}
+
+# Goes up a specified number of directories (i.e. up 4)
+up ()
+{
+	local d=""
+	limit=$1
+	for ((i=1 ; i <= limit ; i++))
+		do
+			d=$d/..
+		done
+	d=$(echo $d | sed 's/^\///')
+	if [ -z "$d" ]; then
+		d=..
+	fi
+	cd $d
+}
+
+# Create and go to the directory
+mkdirg ()
+{
+	mkdir -p $1
+	cd $1
+}
+
+# Move and go to the directory
+mvg ()
+{
+	if [ -d "$2" ];then
+		mv $1 $2 && cd $2
+	else
+		mv $1 $2
+	fi
+}
+
+PATH=$PATH:$HOME/bin
