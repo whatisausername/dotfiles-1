@@ -1,0 +1,86 @@
+! More Konsole/Yakuake-like keybindings:
+*VT100.Translations: #override \
+Shift <Key>Up: scroll-back(1) \n\
+Shift <Key>Down: scroll-forw(1) \n\
+~Meta Shift Ctrl <Key>V: insert-selection(CLIPBOARD) \n\
+Meta Shift Ctrl <Key>V: insert-selection(PRIMARY) \n\
+~Shift <Btn1Up>: select-end(PRIMARY, CUT_BUFFER0) \n\
+Shift <Btn1Up>: select-end(CLIPBOARD, CUT_BUFFER1) \n\
+~Shift ~Ctrl ~Meta <Btn2Up>:insert-selection(PRIMARY, CUT_BUFFER0) \n\
+Shift ~Ctrl ~Meta <Btn2Up>:insert-selection(CLIPBOARD, CUT_BUFFER1)
+
+#urxvt --help 2>&1| sed -n '/:  /s/^ */! URxvt*/gp' >> ~/.Xresources
+URxvt.scrollBar: false
+URxvt.font: xft:dejavu sans mono:size=8
+URxvt.boldFont: xft:dejavu sans mono:size 10
+URxvt.letterSpace: -1
+#URxvt.font: xft:monte carlo fixed 12:size=8:antialias=true
+#URxvt*loginShell: true
+#$ urxvt -geometry 80x3 -name 'bashrun' -e sh -c "/bin/bash -i -t"
+#URxvt.geometry: 67x30+9+591
+URxvt.perl-ext-common: default,clipboard
+URxvt.iso14755: False
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+!urxvt.depth: 32
+!urxvt.background: [75]#1b1b1b
+
+xterm*termName: xterm
+XTerm*background:		#1b1b1b
+XTerm*foreground:		#9e6ffe
+
+URxvt.background:               #1b1b1b
+!URxvt.foreground:               #8292B2
+!URxvt.foreground:               #CCFFFF
+!URxvt.foreground:	#93c9ff
+URxvt.foreground:	#899ca1
+!URxvt.colorBD:                  #CFCFCF
+!URxvt.colorUL:                  #969696
+URxvt.colorIT:                  #686868
+
+!black
+*color0:  #1c1c1c
+*color8:  #3d3a3a
+!red
+*color1:  #d770af
+*color9:  #d28abf
+!green
+*color2 : #9acc79
+*color10: #8fb676
+!yellow
+*color3:  #d0d26b
+*color11: #c8bc45
+!blue
+*color4 : #77b6c5
+*color12: #8fa7b9
+!magenta
+*color5:  #a488d9
+*color13: #bd89de
+!cyan
+*color6:  #7fcab3
+*color14: #6ec2a8
+!white
+*color7:  #8d8d8d
+*color15: #dad3d3
+
+rofi.color-enabled: true
+rofi.color-window: #1d1f21, #9acc79, #9acc79
+rofi.color-normal: #282a2e, #9acc79, #282a2e, #9acc79, #1d1f21
+rofi.color-active: #282a2e, #81a2be, #282a2e, #81a2be, #1d1f21
+rofi.color-urgent: #282a2e, #cc6666, #282a2e, #cc6666, #1d1f21
+rofi.font: NotoSans 12
+rofi.opacity: 85
+rofi.separator-style: solid
+!rofi.location: 2
+!rofi.yoffset: 20
+!rofi.width: 1915
+rofi.lines: 10
+
+URxvt*iconFile:            /usr/share/icons/Numix-Circle/scalable/apps/Terminal.svg
+Xft.lcdfilter: lcddefault
+Xft.antialias: 1
+Xft.dpi: 96
+Xft.hinting: 0
+Xft.hintstyle: hintnone
+Xft.rgba: rgb
+URxvt.perl-ext-common: selection-to-clipboard
