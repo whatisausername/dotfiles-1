@@ -1,0 +1,63 @@
+## Conky config i3; dkeg; 2013 ## 
+
+out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+update_interval 10
+total_run_times 0
+short_units yes
+if_up_strictness address
+#use_spacer left
+override_utf8_locale no
+# set to 1 to disable averaging
+cpu_avg_samples 4
+border_inner_margin 0
+border_outer_margin 0
+#old color
+#28c3c5
+
+TEXT
+[
+{"full_text":"mpd","color":"\#79E0ED","separator":false,"separator_block_width":3},\
+{"full_text":"»","color":"\#7998D1","separator":false,"separator_block_width":3},\
+{"full_text":"${if_mpd_playing} ${mpd_artist}","color":"\#E0Ce91","separator":false,"separator_block_width":3},\
+{"full_text":"-","color":"\#7998D1","separator":false,"separator_block_width":3},\
+{"full_text":"${mpd_title}","color":"\#BD84B6","separator":false,"separator_block_width":3},\
+{"full_text":"${mpd_elapsed}/${mpd_length}","color":"\#9EDEAE","separator":false,"separator_block_width":3},\
+\
+{"full_text":"mu","color":"\#79E0ED","separator":false,"separator_block_width":3},\
+{"full_text":"»","color":"\#7998D1","separator":false,"separator_block_width":3},\
+{"full_text":"${fs_free /media/music}","color":"\#a5955b","separator":false,"separator_block_width":3},\
+\
+{"full_text":"tor","color":"\#79E0ED","separator":false,"separator_block_width":3},\
+{"full_text":"»","color":"\#7998D1","separator":false,"separator_block_width":3},\
+{"full_text":"${fs_free /media/torrents}","color":"\#a5955b","separator":false,"separator_block_width":3},\
+\
+{"full_text":"tv","color":"\#79E0ED","separator":false,"separator_block_width":3},\
+{"full_text":"»","color":"\#7998D1","separator":false,"separator_block_width":3},\
+{"full_text":"${fs_free /media/tv}","color":"\#a5955b","separator":false,"separator_block_width":3},\
+\
+{"full_text":"ram","color":"\#79E0ED","separator":false,"separator_block_width":3},\
+{"full_text":"»","color":"\#7998D1","separator":false,"separator_block_width":3},\
+{"full_text":"${mem}","color":${if_match ${mem}}"\#CC827B"${else}"\#eeeeee"${endif},"separator":false,"separator_block_width":3 },\
+\
+{"full_text":"cpu","color":"\#79E0ED","separator":false,"separator_block_width":3},\
+{"full_text":"»","color":"\#7998D1","separator":false,"separator_block_width":3},\
+{"full_text":"${cpu}%","color":"\#CC827B","separator":false,"separator_block_width":3},\
+\
+{"full_text":"load","color":"\#79E0ED","separator":false,"separator_block_width":3},\
+{"full_text":"»","color":"\#7998D1","separator":false,"separator_block_width":3},\
+{"full_text":"${loadavg 1}","color":"\#CC827B","separator":false,"separator_block_width":3},\
+\
+{"full_text":"uptime","color":"\#79E0ED","separator":false,"separator_block_width":3},\
+{"full_text":"»","color":"\#7998D1","separator":false,"separator_block_width":3},\
+{"full_text":"${uptime}","color":"\#9EDEAE","separator":false,"separator_block_width":3},\
+\
+{"full_text":"»","color":"\#7998D1","separator":false,"separator_block_width":3},\
+{"full_text":"${time %Y/%m/%d}","color":"\#9EDEAE","separator":false,"separator_block_width":3},\
+{"full_text":"»","color":"\#7998D1","separator":false,"separator_block_width":3},\
+{"full_text":"${time %H:%M} ","color":"\#9EDEAE"}\
+],
+
