@@ -1,0 +1,44 @@
+let barposition = "bottom"
+set smoothscroll
+let hintcharacters = "1234567890"
+set defaultengine "s"
+let searchalias b = "btn"
+let searchalias i = "imdb"
+let searchalias s = "startpage"
+let searchalias w = "wikipedia"
+let searchengine btn = "https://broadcasthe.net/torrents.php?action=basic&searchstr=%s"
+let searchengine imdb = "http://www.imdb.com/find?ref_=nv_sr_fn&q=%s&s=all"
+let searchengine gi = "https://www.google.com/search?site=&tbm=isch&source=hp&biw=&bih=&q=%s&btnG=Search+by+image"
+let searchengine ma = "http://www.metal-archives.com/search?searchString=%s&type=band_name"
+let searchengine nzb = "http://www.nzbclub.com/search.aspx?q=%s&st=5&ns=0"
+let searchengine ptp = "https://tls.passthepopcorn.me/torrents.php?action=advanced&order_by=relevance&searchstr=%s"
+let searchengine re = "https://reddit.com/r/%s/new"
+let searchengine s = "https://startpage.com/do/search?q=%s"
+let searchengine wcd = "https://what.cd/artist.php?artistname=%s"
+let searchengine wf = "http://www.ommitted.com/search/?query=%s"
+let searchengine wiki = "https://www.wikipedia.org/search-redirect.php?family=wikipedia&search=%s&language=en&go=++%E2%86%92++&go=Go"
+let searchengine yt = "https://www.youtube.com/results?search_query=%s&page={startPage?}&utm_source=opensearch"
+let qmark b = "https://broadcasthe.net/index.php"
+let qmark g = "https://boards.4chan.org/g/"
+let qmark p = "https://tls.passthepopcorn.me/index.php"
+let qmark w = "https://what.cd/index.php"
+let qmark r = "https://www.reddit.com/new"
+let qmark R = "https://127.0.0.1/rutorrent/"
+let qmark s = "https://localhost:9090/sabnzbd/"
+let qmark t = "https://twitter.com/i/notifications"
+map a createBookmark
+map b :buffer
+map d closeTab
+map gh :open http://localhost/startpage/
+map gH :tabopen http://localhost/startpage/
+map r reloadTabUncached
+map s :tabopen startpage<Space>
+map u lastClosedTab 
+map y yankDocumentUrl
+map Y yankHighlight
+map <C-c> cancelWebRequest
+map <C-l> nextTab
+map <C-h> previousTab
+map <C-q> quitChrome
+map : openCommandBar
+map R :chrome://restart
