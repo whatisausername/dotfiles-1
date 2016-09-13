@@ -57,10 +57,6 @@ tmpfile=$( mktemp -t transferXXX ); curl --progress-bar --upload-file $1 https:/
 # Calculator
 calc(){ awk "BEGIN{ print $* }" ;}
 
-#Weather
-wz(){ curl -s "http://api.wunderground.com/auto/wui/geo/ForecastXML/index.xml?query=${@:-<32907>}"|perl -ne '/<title>([^<]+)/&&printf "%s: ",$1;/<fcttext>([^<]+)/&&print $1,"\n"';}
-export PUUSH_API_KEY="8F1DA407DACDCA32BB075457B5436BA5"
-
 # Show the current version of the operating system
 ver ()
 {
